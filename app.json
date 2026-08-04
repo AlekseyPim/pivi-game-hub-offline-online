@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "Pivi Games",
+    "slug": "game-hub-pivi",
+    "owner": "taske",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "pivigames",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "com.pivi.gamehubpivi",
+      "appleTeamId": "LC36GJM5WG",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.pivi.gamehubpivi",
+      "predictiveBackGestureEnabled": false,
+      "adaptiveIcon": {
+        "backgroundColor": "#12141A",
+        "foregroundImage": "./assets/images/android-icon-foreground.png"
+      },
+      "permissions": [
+        "com.google.android.gms.permission.AD_ID"
+      ]
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#12141A",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "dark": {
+            "backgroundColor": "#12141A",
+            "image": "./assets/images/splash-icon.png",
+            "imageWidth": 200
+          }
+        }
+      ],
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "iosAppId": "ca-app-pub-3940256099942544~1458002511"
+        }
+      ],
+      "expo-iap",
+      [
+        "expo-tracking-transparency",
+        {
+          "userTrackingPermission": "This lets us show you ads that are more relevant to you."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "extra": {
+      "router": {}
+    }
+  }
+}
