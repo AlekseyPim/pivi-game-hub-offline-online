@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pivi Games — Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for Pivi Games — what data the app uses, why, and your choices.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AE%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --n1: #1E88E5; --n2: #43A047; --n3: #E53935; --n4: #F5A800;
+      --bg: #F6F7FA; --surface: #FFFFFF; --surface-2: #EDF0F4;
+      --text: #1A1E27; --muted: #59626F; --border: #E1E5EB; --accent: #5B8DEF;
+      --shadow: 0 1px 2px rgba(20,24,35,.05), 0 8px 30px rgba(20,24,35,.07);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12141A; --surface: #1E2129; --surface-2: #191D25;
+        --text: #ECEEF3; --muted: #98A1B0; --border: #2E3540; --accent: #7BA5F5;
+        --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.34);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(58rem 40rem at 100% -10%, color-mix(in srgb, var(--n1) 8%, transparent), transparent 60%),
+        radial-gradient(48rem 40rem at -10% 110%, color-mix(in srgb, var(--n4) 7%, transparent), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 42rem; margin: 0 auto; padding: clamp(2rem, 6vw, 4rem) 1.25rem 4rem; }
+
+    .brand-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; }
+    .chip {
+      width: 3rem; height: 3rem; flex: none;
+      display: grid; grid-template-columns: repeat(2,1fr); grid-template-rows: repeat(2,1fr);
+      gap: 3px; padding: 4px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; box-shadow: var(--shadow); transform: rotate(-4deg);
+    }
+    .tile { border-radius: 5px; display: grid; place-items: center; font-size: .7rem; line-height: 1; }
+    .tile.t1 { background: color-mix(in srgb, var(--n1) 22%, transparent); }
+    .tile.t2 { background: color-mix(in srgb, var(--n3) 22%, transparent); }
+    .tile.t3 { background: color-mix(in srgb, var(--n2) 22%, transparent); }
+    .tile.t4 { background: color-mix(in srgb, var(--n4) 26%, transparent); }
+
+    .wordmark { line-height: 1.05; }
+    .wordmark .pivi { font-size: 1.15rem; font-weight: 900; }
+    .wordmark .pivi .p { color: var(--n1); } .wordmark .pivi .i1 { color: var(--n2); }
+    .wordmark .pivi .v { color: var(--n4); } .wordmark .pivi .i2 { color: var(--n3); }
+    .wordmark .games { font-size: 1.15rem; font-weight: 900; color: var(--text); }
+    .wordmark small { display: block; font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .4rem; }
+
+    h1 { font-size: clamp(1.9rem, 5.5vw, 2.6rem); line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; margin: .2rem 0 .35rem; }
+    .updated { color: var(--muted); font-size: .9rem; font-weight: 600; margin: 0 0 1.75rem; }
+    .lead { font-size: 1.08rem; color: var(--muted); margin: 0; }
+
+    .doc { margin-top: 2.5rem; }
+    .doc h2 { font-size: 1.2rem; letter-spacing: -.01em; margin: 2.4rem 0 .6rem; display: flex; align-items: baseline; gap: .6rem; }
+    .doc h2 .n { font-size: .8rem; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .doc p { margin: .55rem 0; color: var(--text); }
+    .doc p.note { color: var(--muted); font-size: .96rem; }
+    .doc ul { margin: .6rem 0; padding-left: 0; list-style: none; display: grid; gap: .5rem; }
+    .doc li { position: relative; padding-left: 1.4rem; color: var(--text); }
+    .doc li::before { content: ""; position: absolute; left: 0; top: .62em; width: .5rem; height: .5rem; border-radius: 2px; background: var(--accent); }
+    a.inline { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a.inline:hover { text-decoration: underline; }
+
+    .callout {
+      margin-top: 2.5rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; box-shadow: var(--shadow); padding: 1.35rem 1.5rem;
+    }
+    .callout .label { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .callout .addr { font-size: 1.1rem; font-weight: 700; margin-top: .2rem; word-break: break-all; }
+
+    footer {
+      margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .88rem;
+      display: flex; flex-wrap: wrap; gap: .35rem 1rem; align-items: center; justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="chip" aria-hidden="true">
+        <div class="tile t1">🚢</div>
+        <div class="tile t2">🎲</div>
+        <div class="tile t3">💣</div>
+        <div class="tile t4">🔢</div>
+      </div>
+      <div class="wordmark">
+        <span class="pivi"><span class="p">P</span><span class="i1">i</span><span class="v">v</span><span class="i2">i</span></span>
+        <span class="games">Games</span>
+        <small>Privacy Policy</small>
+      </div>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 7 August 2026</p>
+    <p class="lead">Pivi Games (“the app”, “we”) is a collection of four classics — sudoku, minesweeper, battleship and ludo — playable solo and, in most of them, online against a friend. We keep data collection to the minimum needed to run the games, and we never sell your data. This policy explains what is used and why.</p>
+
+    <div class="doc">
+      <h2><span class="n">1</span> Solo play</h2>
+      <p>When you play on a single device, the app works fully offline. Your settings, chosen name and saved games are stored <strong>only on your device</strong> and are removed when you delete the app. Nothing about solo play is sent to us.</p>
+
+      <h2><span class="n">2</span> Online multiplayer</h2>
+      <p>To synchronise a match between players, the following is sent in real time through a third-party cloud service (Supabase Realtime):</p>
+      <ul>
+        <li>your <strong>chosen display name</strong>;</li>
+        <li>your <strong>moves</strong> in the game you are playing;</li>
+        <li>the <strong>room code</strong> used to connect players;</li>
+        <li>any <strong>emoji reaction</strong> you send during a match.</li>
+      </ul>
+      <p>This data is used solely to run the match, is not tied to any account, and is not retained by the developer after the game ends. Please do not put personal information in your display name.</p>
+
+      <h2><span class="n">3</span> Advertising</h2>
+      <p>The app shows ads through <strong>Google AdMob</strong>. To serve ads, AdMob may access your device’s advertising identifier and related information. On iOS you are asked for tracking permission before any of this begins, and where consent is required a Google consent form is shown. Google’s handling of this data is described in the
+        <a class="inline" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Ads / AdMob policy</a>.
+      </p>
+      <p class="note">Becoming a Supporter (see below) removes ads in all four games entirely.</p>
+
+      <h2><span class="n">4</span> Purchases</h2>
+      <p>The optional “Buy the developer a coffee” purchase is processed entirely by the <strong>App Store</strong> or <strong>Google Play</strong>. The developer does not receive or store your payment details. Only a local flag recording your Supporter status is kept on your device (and restorable through your store account).</p>
+
+      <h2><span class="n">5</span> Updates</h2>
+      <p>The app checks for over-the-air updates at launch through <strong>Expo Updates</strong>. That request carries only technical information needed to pick the right update (app version, platform and runtime) — no personal data and no identifier tied to you.</p>
+
+      <h2><span class="n">6</span> Analytics &amp; accounts</h2>
+      <p>The app has <strong>no user accounts</strong> and does <strong>not</strong> use third-party analytics or tracking SDKs beyond the advertising described above.</p>
+
+      <h2><span class="n">7</span> Children’s privacy</h2>
+      <p>The app is not directed at children and does not knowingly collect personal information from children. Because it contains third-party advertising, it is not offered in a “Made for Kids” category.</p>
+
+      <h2><span class="n">8</span> Data retention &amp; deletion</h2>
+      <p>Local data lives on your device and is deleted when you uninstall the app. Real-time online data is transient and is not stored after a match. For any questions about your data, contact us below.</p>
+
+      <h2><span class="n">9</span> Third-party services</h2>
+      <ul>
+        <li><strong>Supabase</strong> — real-time online multiplayer transport.</li>
+        <li><strong>Google AdMob</strong> — advertising.</li>
+        <li><strong>Expo Updates</strong> — over-the-air app updates.</li>
+        <li><strong>Apple App Store / Google Play</strong> — app distribution and in-app purchases.</li>
+      </ul>
+
+      <h2><span class="n">10</span> Changes to this policy</h2>
+      <p>We may update this policy as the app evolves. Material changes will be reflected here with a new “last updated” date.</p>
+    </div>
+
+    <div class="callout">
+      <div class="label">Contact</div>
+      <div class="addr"><a class="inline" href="mailto:oleksiipimenov27eu@gmail.com?subject=Pivi%20Games%20privacy">oleksiipimenov27eu@gmail.com</a></div>
+    </div>
+
+    <footer>
+      <span>© 2026 Pivi Games</span>
+      <span><a class="inline" href="index.html">Support &amp; Help →</a></span>
+    </footer>
+  </div>
+</body>
+</html>

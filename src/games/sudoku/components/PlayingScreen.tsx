@@ -21,7 +21,7 @@ import { SHOW_BOARD_BANNER } from '@/shared/constants/ads';
 import { playerColor } from '@/games/sudoku/constants/colors';
 import { useTheme } from '@/games/sudoku/constants/theme';
 import { useT } from '@/games/sudoku/i18n/useT';
-import { maybeShowStartRewardedAd } from '@/shared/ads/adService';
+import { maybeShowRewardedAd, maybeShowStartRewardedAd } from '@/shared/ads/adService';
 import { GAME_ID } from '@/games/sudoku/constants/app';
 import { useAdsDisabled } from '@/shared/ads/useAdsDisabled';
 import { computeResults, remainingDigits } from '@/games/sudoku/logic/gameReducer';
@@ -99,7 +99,10 @@ export function PlayingScreen() {
     );
   };
 
-  const exit = () => {
+  const exit = async () => {
+    // Leaving a running game plays a rewarded ad first (win or lose), same as
+    // starting one — mirrors ludo-game's handleExit / handleFinishFromGameOver.
+    await maybeShowRewardedAd(adsDisabled);
     if (online) leaveOnline();
     else useGameStore.getState().resetGame();
     router.replace('/sudoku');
@@ -237,7 +240,7 @@ export function PlayingScreen() {
         }}
         onExit={() => {
           setMenuOpen(false);
-          exit();
+          void exit();
         }}
       />
 
@@ -257,7 +260,7 @@ export function PlayingScreen() {
         canRestart={!online || onlineMode === 'host'}
         onDismiss={() => setResultDismissed(true)}
         onPlayAgain={() => void playAgain()}
-        onExit={exit}
+        onExit={() => void exit()}
       />
     </SafeAreaView>
   );

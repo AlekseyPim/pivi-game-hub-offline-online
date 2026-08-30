@@ -19,8 +19,8 @@
       "package": "com.pivi.gamehubpivi",
       "predictiveBackGestureEnabled": false,
       "adaptiveIcon": {
-        "backgroundColor": "#12141A",
-        "foregroundImage": "./assets/images/android-icon-foreground.png"
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/images/icon-adaptive.png"
       },
       "permissions": [
         "com.google.android.gms.permission.AD_ID"
@@ -35,13 +35,13 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#12141A",
+          "backgroundColor": "#FFFFFF",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
+          "imageWidth": 240,
           "dark": {
-            "backgroundColor": "#12141A",
+            "backgroundColor": "#FFFFFF",
             "image": "./assets/images/splash-icon.png",
-            "imageWidth": 200
+            "imageWidth": 240
           }
         }
       ],
@@ -49,7 +49,7 @@
         "react-native-google-mobile-ads",
         {
           "androidAppId": "ca-app-pub-3940256099942544~3347511713",
-          "iosAppId": "ca-app-pub-3940256099942544~1458002511"
+          "iosAppId": "ca-app-pub-9119808783860406~2374208392"
         }
       ],
       "expo-iap",
@@ -68,7 +68,15 @@
       "policy": "appVersion"
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "fc612faf-60e1-4438-b2c3-a09d90692cd6"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/fc612faf-60e1-4438-b2c3-a09d90692cd6",
+      "checkAutomatically": "NEVER",
+      "fallbackToCacheTimeout": 0
     }
   }
 }

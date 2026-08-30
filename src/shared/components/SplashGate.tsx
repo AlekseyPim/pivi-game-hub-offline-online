@@ -6,8 +6,8 @@ import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import { ACCENT } from '@/shared/constants/colors';
 import { useT } from '@/shared/i18n/useT';
 
-// TODO: replace with the hub's own artwork — this is still the Expo template's
-// splash mark, and it also feeds `expo-splash-screen` in app.json.
+// The same file `expo-splash-screen` shows natively (see app.json): the brand
+// card on transparency, so it sits on the splash background without an edge.
 const LOGO = require('../../../assets/images/splash-icon.png');
 
 /**
@@ -15,7 +15,7 @@ const LOGO = require('../../../assets/images/splash-icon.png');
  * app.json — the launch screen is not a themed app screen, and keeping the two
  * identical means no colour flash when the native splash hands over to this one.
  */
-const SPLASH_BG = '#12141A';
+const SPLASH_BG = '#FFFFFF';
 
 // The branded splash stays up at least this long, even with nothing to load.
 const MIN_SPLASH_MS = 1400;
@@ -73,8 +73,8 @@ function Splash({ downloading }: { downloading: boolean }) {
   const t = useT();
   return (
     <View style={styles.screen}>
+      {/* The card already carries the wordmark — no caption needed. */}
       <Image source={LOGO} style={styles.logo} resizeMode="contain" />
-      <Text style={styles.wordmark}>{t('app_title')}</Text>
       <ActivityIndicator size="small" color={ACCENT} style={styles.spinner} />
       {downloading && <Text style={styles.status}>{t('downloading_update')}</Text>}
     </View>
@@ -90,8 +90,7 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: SPLASH_BG,
   },
-  logo: { width: 180, height: 180 },
-  wordmark: { fontSize: 26, fontWeight: '900', color: '#FFFFFF' },
+  logo: { width: 240, height: 240 },
   spinner: { marginTop: 8 },
-  status: { fontSize: 14, fontWeight: '600', color: '#E0E0E0' },
+  status: { fontSize: 14, fontWeight: '600', color: '#616161' },
 });

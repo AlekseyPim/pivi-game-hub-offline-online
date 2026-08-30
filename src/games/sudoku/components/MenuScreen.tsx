@@ -34,7 +34,6 @@ import { useGameStore } from "@/games/sudoku/store/gameStore";
 import { useSaveStore } from "@/games/sudoku/store/saveStore";
 import { useSettingsStore } from "@/shared/store/settingsStore";
 import { useSetupStore } from "@/games/sudoku/store/setupStore";
-import type { Difficulty } from "@/games/sudoku/types/game";
 
 // Build identity, shown in the footer (mirrors ludo-game). The OTA id is null
 // on a plain build (no update applied) → we show the localized "embedded".
@@ -44,12 +43,6 @@ const BUILD_NUMBER =
   Constants.expoConfig?.android?.versionCode?.toString() ??
   "—";
 const OTA_SHORT_ID = Updates.updateId ? Updates.updateId.slice(0, 8) : null;
-
-const DIFFICULTY_ICON: Record<Difficulty, string> = {
-  easy: "🌤",
-  medium: "⛅️",
-  hard: "🌩",
-};
 
 /** Home screen — same items and running order as ludo-game's menu. */
 export function MenuScreen() {
@@ -141,14 +134,13 @@ export function MenuScreen() {
                   },
                 ]}
               >
-                <Text style={styles.modeIcon}>{DIFFICULTY_ICON[value]}</Text>
                 <Text
                   numberOfLines={1}
+                  adjustsFontSizeToFit
                   style={[styles.modeName, { color: theme.textPrimary }]}
                 >
                   {t(value)}
                 </Text>
-                {active ? <Text style={styles.modeCheck}>✓</Text> : null}
               </Pressable>
             );
           })}
@@ -296,18 +288,14 @@ const styles = StyleSheet.create({
   },
   modeCard: {
     flex: 1,
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 4,
-    paddingVertical: 12,
-    paddingHorizontal: 8,
+    paddingVertical: 16,
+    paddingHorizontal: 6,
     borderRadius: 16,
     borderWidth: 2.5,
   },
-  modeIcon: { fontSize: 26 },
-  modeName: { fontSize: 14, fontWeight: "700" },
-  modeCheck: { fontSize: 13, fontWeight: "900", color: ACCENT },
+  modeName: { fontSize: 16, fontWeight: "700", textAlign: "center" },
   modeHint: {
     fontSize: 12,
     textAlign: "center",

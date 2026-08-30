@@ -25,7 +25,8 @@
       "autoIncrement": false,
       "android": {
         "buildType": "apk"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {

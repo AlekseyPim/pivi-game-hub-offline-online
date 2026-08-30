@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { maybeShowStartRewardedAd } from "@/shared/ads/adService";
+import { maybeShowRewardedAd, maybeShowStartRewardedAd } from "@/shared/ads/adService";
 import { useAdsDisabled } from "@/shared/ads/useAdsDisabled";
 import { GAME_ID } from "@/games/battleship/constants/app";
 import { AdBanner } from "@/shared/components/AdBanner";
@@ -151,6 +151,14 @@ export function PlayingScreen() {
     if (online) leaveOnline();
     else useGameStore.getState().resetGame();
     router.replace('/battleship');
+  };
+
+  // Leaving a running/finished battle plays a rewarded ad first (win or
+  // lose) — mirrors ludo-game's handleExit / handleFinishFromGameOver. Not
+  // used for backing out of placement: no battle has actually started yet.
+  const exitMatch = async () => {
+    await maybeShowRewardedAd(adsDisabled);
+    exit();
   };
 
   // --- Placement ----------------------------------------------------------
@@ -535,7 +543,7 @@ export function PlayingScreen() {
         }}
         onExit={() => {
           setMenuOpen(false);
-          exit();
+          void exitMatch();
         }}
       />
 
@@ -553,7 +561,7 @@ export function PlayingScreen() {
         canRestart={!online || onlineMode === "host"}
         onDismiss={() => setResultDismissed(true)}
         onPlayAgain={playAgain}
-        onExit={exit}
+        onExit={() => void exitMatch()}
       />
     </SafeAreaView>
   );

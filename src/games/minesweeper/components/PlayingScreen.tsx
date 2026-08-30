@@ -177,11 +177,12 @@ export function PlayingScreen() {
     router.replace('/minesweeper');
   }, [online, leaveOnline, resetGame, router]);
 
-  // Leaving the game-over modal after a WIN plays a rewarded ad first.
-  const exitFromResult = useCallback(async () => {
-    if (state.phase === 'won') await maybeShowRewardedAd(adsDisabled);
+  // Leaving a running/finished game plays a rewarded ad first (win or
+  // lose) — mirrors ludo-game's handleExit / handleFinishFromGameOver.
+  const exitMatch = useCallback(async () => {
+    await maybeShowRewardedAd(adsDisabled);
     exit();
-  }, [state.phase, adsDisabled, exit]);
+  }, [adsDisabled, exit]);
 
   const saveCurrent = useCallback(() => {
     void saveGame(state);
@@ -284,7 +285,7 @@ export function PlayingScreen() {
         }}
         onExit={() => {
           setMenuOpen(false);
-          exit();
+          void exitMatch();
         }}
       />
 
@@ -298,7 +299,7 @@ export function PlayingScreen() {
         dismissible={lost}
         onDismiss={() => setShowOver(false)}
         onPlayAgain={playAgain}
-        onExit={exitFromResult}
+        onExit={exitMatch}
       />
 
       <EmojiModal

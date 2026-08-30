@@ -12,8 +12,10 @@ import { useT } from '@/shared/i18n/useT';
  * away from it; inside the hub it sits one push deep and needs a visible exit —
  * the swipe-back gesture alone is not something a player can see.
  *
- * Absolutely positioned so it can be dropped into a menu without disturbing the
- * centred layout underneath it.
+ * Laid out in the flow, as the first child of the menu's `SafeAreaView`, rather
+ * than absolutely positioned: an absolute child is not offset by that view's
+ * safe-area padding, so it ended up under the status bar. The menus below it
+ * centre themselves in whatever height is left, so the row costs them nothing.
  */
 export function HubBackButton() {
   const router = useRouter();
@@ -38,15 +40,13 @@ export function HubBackButton() {
 
 const styles = StyleSheet.create({
   wrap: {
-    position: 'absolute',
-    top: 6,
-    left: 12,
-    zIndex: 10,
+    alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
     paddingVertical: 6,
-    paddingRight: 10,
+    paddingLeft: 12,
+    paddingRight: 16,
   },
   chevron: { fontSize: 30, fontWeight: '700', lineHeight: 32 },
   label: { fontSize: 16, fontWeight: '700' },

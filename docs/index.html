@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pivi Games — Support</title>
+  <meta name="description" content="Support and help for Pivi Games — sudoku, minesweeper, battleship and ludo in one app. Contact, FAQ and privacy info.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AE%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --n1: #1E88E5; --n2: #43A047; --n3: #E53935; --n4: #F5A800;
+
+      --bg: #F6F7FA;
+      --surface: #FFFFFF;
+      --surface-2: #EDF0F4;
+      --text: #1A1E27;
+      --muted: #59626F;
+      --border: #E1E5EB;
+      --accent: #5B8DEF;
+      --shadow: 0 1px 2px rgba(20,24,35,.05), 0 8px 30px rgba(20,24,35,.07);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12141A; --surface: #1E2129; --surface-2: #191D25;
+        --text: #ECEEF3; --muted: #98A1B0; --border: #2E3540;
+        --accent: #7BA5F5;
+        --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.34);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(58rem 40rem at 100% -10%, color-mix(in srgb, var(--n1) 8%, transparent), transparent 60%),
+        radial-gradient(48rem 40rem at -10% 110%, color-mix(in srgb, var(--n4) 7%, transparent), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 40rem; margin: 0 auto; padding: clamp(2rem, 6vw, 4.5rem) 1.25rem 4rem; }
+
+    /* ---- Four-tile chip, echoing the app icon ---- */
+    .brand-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .chip {
+      width: 3.4rem; height: 3.4rem; flex: none;
+      display: grid; grid-template-columns: repeat(2,1fr); grid-template-rows: repeat(2,1fr);
+      gap: 3px; padding: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      transform: rotate(-4deg);
+    }
+    .tile { border-radius: 6px; display: grid; place-items: center; font-size: .8rem; line-height: 1; }
+    .tile.t1 { background: color-mix(in srgb, var(--n1) 22%, transparent); }
+    .tile.t2 { background: color-mix(in srgb, var(--n3) 22%, transparent); }
+    .tile.t3 { background: color-mix(in srgb, var(--n2) 22%, transparent); }
+    .tile.t4 { background: color-mix(in srgb, var(--n4) 26%, transparent); }
+
+    .wordmark { line-height: 1.05; }
+    .wordmark .pivi { font-size: 1.35rem; font-weight: 900; letter-spacing: -.01em; }
+    .wordmark .pivi .p { color: var(--n1); } .wordmark .pivi .i1 { color: var(--n2); }
+    .wordmark .pivi .v { color: var(--n4); } .wordmark .pivi .i2 { color: var(--n3); }
+    .wordmark .games { font-size: 1.35rem; font-weight: 900; color: var(--text); }
+    .wordmark small { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .4rem; }
+
+    h1 { font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; margin: .2rem 0 .6rem; }
+    .lead { font-size: 1.1rem; color: var(--muted); max-width: 34rem; margin: 0; }
+
+    .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .7rem; margin-top: 2rem; }
+    .game {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: .9rem 1rem; box-shadow: var(--shadow);
+    }
+    .game .name { font-weight: 800; font-size: 1rem; }
+    .game .desc { font-size: .85rem; color: var(--muted); margin-top: .15rem; }
+
+    .contact {
+      margin-top: 2.25rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; box-shadow: var(--shadow); padding: 1.5rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .contact .label { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .contact .addr { font-size: 1.15rem; font-weight: 700; margin-top: .15rem; word-break: break-all; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--accent); color: #fff; font-weight: 700; font-size: 1rem;
+      padding: .8rem 1.3rem; border-radius: 12px; text-decoration: none;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 2px; }
+    .reply { font-size: .92rem; color: var(--muted); margin: .9rem 0 0; }
+
+    section { margin-top: 3rem; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); margin: 0 0 1rem;
+    }
+    .eyebrow::before { content: ""; width: .65rem; height: .65rem; border-radius: 2px; background: var(--accent); }
+
+    details {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 0 1.15rem; margin-bottom: .7rem; box-shadow: var(--shadow); overflow: hidden;
+    }
+    summary {
+      list-style: none; cursor: pointer; font-weight: 700; font-size: 1.02rem; padding: 1.05rem 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary .chev {
+      flex: none; width: 1.4rem; height: 1.4rem; border-radius: 6px;
+      background: var(--surface-2); color: var(--muted);
+      display: grid; place-items: center; font-size: 1rem; font-weight: 800; transition: transform .18s ease;
+    }
+    details[open] summary .chev { transform: rotate(45deg); }
+    summary:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 3px; border-radius: 8px; }
+    details .answer { padding: 0 0 1.1rem; color: var(--muted); }
+    details .answer strong { color: var(--text); }
+
+    .flags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .6rem; }
+    .flags span { background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: .25rem .7rem; font-size: .85rem; font-weight: 600; color: var(--text); }
+
+    footer {
+      margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .88rem;
+      display: flex; flex-wrap: wrap; gap: .35rem 1rem; align-items: center; justify-content: space-between;
+    }
+    a.inline { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a.inline:hover { text-decoration: underline; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="chip" aria-hidden="true">
+        <div class="tile t1">🚢</div>
+        <div class="tile t2">🎲</div>
+        <div class="tile t3">💣</div>
+        <div class="tile t4">🔢</div>
+      </div>
+      <div class="wordmark">
+        <span class="pivi"><span class="p">P</span><span class="i1">i</span><span class="v">v</span><span class="i2">i</span></span>
+        <span class="games">Games</span>
+        <small>Support &amp; Help</small>
+      </div>
+    </div>
+
+    <h1>How can we help?</h1>
+    <p class="lead">Thanks for playing Pivi Games — four classics in one app, each playable solo and most of them online against a friend. Questions, bugs, or ideas are always welcome.</p>
+
+    <div class="games-grid">
+      <div class="game"><div class="name">Sudoku</div><div class="desc">Classic 9×9 — solo or a race for two</div></div>
+      <div class="game"><div class="name">Minesweeper</div><div class="desc">Clear the field without setting off a mine</div></div>
+      <div class="game"><div class="name">Battleship</div><div class="desc">Place your fleet, sink theirs first</div></div>
+      <div class="game"><div class="name">Ludo</div><div class="desc">Race four tokens all the way home</div></div>
+    </div>
+
+    <div class="contact">
+      <div>
+        <div class="label">Contact us</div>
+        <div class="addr">oleksiipimenov27eu@gmail.com</div>
+        <p class="reply">We usually reply within 48 hours.</p>
+      </div>
+      <a class="btn" href="mailto:oleksiipimenov27eu@gmail.com?subject=Pivi%20Games%20support">Email support</a>
+    </div>
+
+    <section>
+      <p class="eyebrow">Frequently asked</p>
+
+      <details open>
+        <summary>How do I start a game? <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">The home screen lists all four games. Tap a card to open that game's menu, where you pick your settings and start playing. <strong>“‹ All games”</strong> at the top-left takes you back to the list.</div>
+      </details>
+
+      <details>
+        <summary>How does online multiplayer work? <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Inside a game, tap <strong>Online</strong> → <strong>Create room</strong> and share the short room code with the other player, who enters it to join. Rooms are per game — a sudoku code will not open a battleship match.</div>
+      </details>
+
+      <details>
+        <summary>Are settings shared between the games? <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Yes. Theme, language, vibration and your online name are app-wide, so you set them once. Anything that only makes sense inside one game — minesweeper's board palette, battleship's water colours, ludo's fast mode — lives in that game's own settings.</div>
+      </details>
+
+      <details>
+        <summary>How do I remove ads? <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Tap <strong>Buy the developer a coffee</strong> on the home screen. It becomes a one-time Supporter unlock that removes ads across <strong>all four games</strong> for good (and adds a golden victory salute). Everything is completely free without it.</div>
+      </details>
+
+      <details>
+        <summary>I'm a Supporter but ads came back / I switched phones <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Open <strong>Settings → Restore purchases</strong>. Your Supporter status is tied to your App Store or Google Play account and will be restored.</div>
+      </details>
+
+      <details>
+        <summary>I used to play the standalone Pivi apps <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Pivi Games is a separate app, so saved games, settings and Supporter purchases from the standalone Sudoku / Minesweeper / Battleship / Ludo apps do not carry over, and you cannot play an online match between the two. Sorry — store rules give each app its own identity.</div>
+      </details>
+
+      <details>
+        <summary>Which languages are supported? <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Seven — switch anytime in Settings:
+          <div class="flags">
+            <span>🇬🇧 English</span><span>🇷🇺 Русский</span><span>🇩🇪 Deutsch</span>
+            <span>🇪🇸 Español</span><span>🇺🇦 Українська</span><span>🇵🇱 Polski</span><span>🇸🇰 Slovenčina</span>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary>What about my data and privacy? <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Solo play works fully offline. For <strong>online</strong> matches, your chosen name, moves and room code are sent in real time through a third-party cloud service only to run the match — they aren't tied to an account and aren't kept after the game. Please don't put personal information in your display name.</div>
+      </details>
+
+      <details>
+        <summary>I found a bug or have a suggestion <span class="chev" aria-hidden="true">+</span></summary>
+        <div class="answer">Email <a class="inline" href="mailto:oleksiipimenov27eu@gmail.com?subject=Pivi%20Games%20bug%2Fidea">oleksiipimenov27eu@gmail.com</a> with which game you were in, your device model, iOS/Android version, and what happened. Screenshots help a lot.</div>
+      </details>
+    </section>
+
+    <footer>
+      <span>© 2026 Pivi Games</span>
+      <span><a class="inline" href="privacy.html">Privacy Policy →</a></span>
+    </footer>
+  </div>
+</body>
+</html>
